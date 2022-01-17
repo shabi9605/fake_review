@@ -1,0 +1,104 @@
+{% extends 'index.html' %} {% block title %} cart {% endblock %}{% load static %} {% block content %}
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<table id="cart" class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th style="width:20%">Product</th>
+            <th style="width:20%">Name</th>
+
+            <th style="width:10%"><img src="/static/assets/images/flip.jpg" width="40px" height="30px"></th>
+            <th style="width:10%"><img src="/static/assets/images/am.png" width="40px" height="30px"></th>
+            <th style="width:10%">SURE<span class="lohny">&</span>LWR</a>
+            </th>
+
+            <th style="width:8%">Quantity</th>
+            
+            <th style="width:32%" class="text-center">Flipkart Total</th>
+            <th></th>
+            <th style="width:40%" class="text-center">Amazone Total</th>
+            <th></th>
+            <th style="width:40%" class="text-center">Our Total</th>
+            <!-- <th style="width:10%"></th> -->
+            <!-- <th style="width:10%"></th> -->
+
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in cart.items.all %} {% with product=item.product %}
+        <tr>
+            <td data-th="Product">
+                <div class="row">
+                    <div class="col-sm-2 hidden-xs">
+
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img src="{% if product.flipkart_image %}{{ product.flipkart_image.url }}{% endif %}" class="img-responsive" width="40px">
+                        </a>
+
+                    </div>
+                    <div class="col-sm-10">
+                        <h4 class="nomargin">{{ product.name }}</h4>
+                        <p>{{ product.descripion }}</p>
+                    </div>
+                </div>
+            </td>
+            <td data-th="Price">{{ product.comapare.name}}</td>
+            
+            <td data-th="Price">₹ {{ product.comapare_flipkart_price }}</td>
+            <td data-th="Price">₹ {{ product.compare_amazon_price }}</td>
+            <td data-th="Price">₹ {{ product.our_price }}</td>
+
+
+            <td data-th="Quantity">
+
+                <form action="{% url 'cart:cart_add_q' product.id  %}">
+                    <input type="number" name="q" value="{{ item.quantity }}" class="form-control text-center" onchange="this.form.submit()"> {% csrf_token %}
+
+                </form>
+
+            </td>
+            <td data-th="Subtotal" class="text-center">{{item.get_cost}}</td>
+            <td></td>
+            <td data-th="Subtotal" class="text-center">{{item.get_cost1}}</td>
+
+            
+            <td></td>
+            <td data-th="Subtotal" class="text-center">{{item.get_cost2}}</td>
+
+            <td class="actions" data-th="">
+
+                <a href="{% url 'cart:cart_remove' product.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+            </td>
+        </tr>
+        {% endwith %} {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong></strong></td>
+        </tr>
+        
+        <tr>
+            <td><a href="{% url 'product' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td colspan="1" class="hidden-xs"></td>
+            <td colspan="1" class="hidden-xs"></td>
+            <td colspan="1" class="hidden-xs"></td>
+
+
+            <td class="hidden-xs text-center"><strong>Total Rs.{{cart.get_total_cost}}</strong></td>
+            <td colspan="1" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Total Rs. {{cart.get_total_cost1}}</strong></td>
+            <td colspan="1" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>Total Rs. {{cart.get_total_cost2}}</strong></td>
+            <td colspan="1" class="hidden-xs"></td>
+            <td><a href="{% url 'orders:order_create' %}" class="btn btn-success btn-block">Buy Our Product <i class="fa fa-angle-right"></i></a></td>
+
+        </tr>
+
+    </tfoot>
+</table>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "index.html" %} {% load static %} {% block title %} {{ product.name }} {% endblock %} 
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="/static/css/card.css">
+
+
+<link href="//fonts.googleapis.com/css?family=Oswald:300,400,500,600&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mt-4">
+            <div class="card-body">
+                <img  src="{% if product.flipkart_image %}{{ product.flipkart_image.url }}{% endif %}" class="card-img-top img-fluid">
+            </div>
+        </div>
+        &nbsp &nbsp
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="my-4"><a style=" text-decoration: none;" href="{% url 'product' %}">See More Products</a></h2>
+            </div>
+        </div>
+
+        {% if product %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ product.comapare.name }}</h3>
+                <h4>Rs. {{ product.comapare_flipkart_price }}</h4>
+                <h4>Rs. {{ product.compare_amazon_price }}</h4>
+                <h4>Available in Our store:Rs. {{ product.our_price}}</h4>
+
+                <h4 class="product-price"><i class="fa fa-cart"><a href="{{listing.comapare.url_flipkart}}"><img src="/static/assets/images/flip.jpg" width="40px" height="30px"></a></i></h4>
+                <h4 class="product-price"><i class="fa fa-cart"><a href="{{listing.comapare.url_amazon}}"><img src="/static/assets/images/am.png" width="40px" height="30px"></a></i></h4>
+
+                <p class="card-text">{{ product.description|linebreaks }}</p>
+                <div class="card-footer text-center">
+                    <small class="text-muted form-group ">
+                    <a href="{% url  'cart:cart_add' product.id %}" class="btn btn-primary">Add to cart</a>
+                    <a href="{% url  'wishlist:wishlist_add' product.id %}" class="btn btn-primary">Add to Wishlist</a>
+                  </small>
+                </div>
+            </div>
+        </div>{% else %}<i class="fa fa-heart-o"></i>
+        <div class="col-md-12">
+            <p>No Listings Available</p>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+
+{% endblock %}

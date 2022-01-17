@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--footer-->
+		<div class="footer">
+            <p>&copy; 2016 Novus Admin Panel. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>
+         </div>
+         <!--//footer-->
+     </div>
+     <!-- Classie -->
+         <script src="/static/js/classie.js"></script>
+         <script>
+             var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+                 showLeftPush = document.getElementById( 'showLeftPush' ),
+                 body = document.body;
+                 
+             showLeftPush.onclick = function() {
+                 classie.toggle( this, 'active' );
+                 classie.toggle( body, 'cbp-spmenu-push-toright' );
+                 classie.toggle( menuLeft, 'cbp-spmenu-open' );
+                 disableOther( 'showLeftPush' );
+             };
+             
+ 
+             function disableOther( button ) {
+                 if( button !== 'showLeftPush' ) {
+                     classie.toggle( showLeftPush, 'disabled' );
+                 }
+             }
+         </script>
+     <!--scrolling js-->
+     <script src="/static/js/jquery.nicescroll.js"></script>
+     <script src="/static/js/scripts.js"></script>
+     <!--//scrolling js-->
+     <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.js"> </script>
+</body>
+</html>

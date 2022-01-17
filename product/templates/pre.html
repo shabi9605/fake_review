@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>SpryStore E-commerce Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="/static/assets/css/style-starter.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"> -->
+  <link rel="stylesheet" type="text/css" href="/static/css/card.css">
+
+
+
+  <!-- Template CSS -->
+  <link href="//fonts.googleapis.com/css?family=Oswald:300,400,500,600&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
+  <!-- Template CSS -->
+
+</head>
+
+<body>
+<!--w3l-banner-slider-main-->
+{% include 'nav.html' %}
+<body>
+    <h1 style="text-align: center;">Price Comparison Form </h1>&nbsp &nbsp &nbsp 
+    <form action="#" method="post">
+        {% csrf_token %}
+        <p align='center'>Enter the name of Product:&nbsp &nbsp &nbsp 
+        <input type="text" name="nm" placeholder=""/></h3></p><br>
+        <h5  align='center'><input type="submit" value="Compare"/></h5>
+      </form>
+      <h2>{{key}}</h2>
+      <div class="table-responsive custom-table-responsive">
+  
+        <table class="table custom-table">
+          <thead>
+            <tr>  
+  
+              
+              <th scope="col">#</th>
+              <th scope="col">Flipkart product</th>
+              <th scope="col">flipkart price</th>
+              <th scope="col">Amazon product</th>
+              <th scope="col">Amazon price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for value in stocklist%}      
+            <tr scope="row">
+              
+              <td>
+                {{ value.0 }}
+              </td>
+              <td>{{ value.1 }}</td>
+              <td>
+                {{ value.2}}
+              </td>
+              <td>{{ value.3 }}</td>
+              <td>{{ value.4 }}</td>
+            </tr>
+            {% endfor %}
+      
+</body>
+</html>

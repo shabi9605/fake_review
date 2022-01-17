@@ -1,0 +1,36 @@
+{% extends 'index.html' %}{% block title %}register{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section class="w3l-contacts-8">
+    <!-- <div class="contacts-9 section-gap py-5">
+      <div class="container py-lg-5">
+        <div class="row top-map">
+          <div class="col-lg-6 partners">
+            
+            
+          </div>
+          
+        </div>
+      </div>
+    </div> -->
+    <div class="map-content-9 form-bg-img">
+      <div class="layer section-gap py-5">
+        <div class="container py-lg-5">
+          <div class="form">
+            <h3 class="hny-title two text-center">Register Here</h3>
+            {% if registered %}<h1>Thank You for registering </h1>
+            {% else %}
+            <form action="{% url 'register' %}"class="mt-md-5 mt-4" method="post">
+            
+              {% csrf_token %} 
+              <div class="input-grids">
+                {{user_form|crispy}}{{profile_form|crispy}}
+              <button type="submit" class="btn">Register</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

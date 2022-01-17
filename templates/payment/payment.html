@@ -1,0 +1,24 @@
+{% extends 'index.html' %} {% block title %} | payment {% endblock %} {% load crispy_forms_tags %}{% block content %}
+<h1>Payment
+
+</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container" style="width: 40%; background-color: #40e3ac;border-radius: 5px; padding: 30px;">
+         User name: {{user.username}}<br>
+         Amount:{{user.cart.total_amount}}<br><br>
+        <input type="submit" value="PAY">
+        {% if r == 2 %}
+        <h1>not</h1>
+        {% endif %}
+    </form>
+
+<br /> {% if payment %}
+<form action="{% url 'payment:payment-status' %}" method="POST">
+    {% csrf_token %}
+    <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_48Z9LMTDVAN5JU" data-amount="{{ payment.amount }}" data-currency="{{ payment.currency }}" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay" data-name="Lottery Management"
+        data-description="Buy and Sell easy" data-image="https://example.com/your_logo.jpg" data-prefill.name="{{ payment.name }}" data-prefill.email="you@example.com" data-theme.color="#F37254"></script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+</form>{% endif %}
+
+</div>{% endblock %}

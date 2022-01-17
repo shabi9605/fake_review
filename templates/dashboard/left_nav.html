@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class=" sidebar" role="navigation">
+        <div class="navbar-collapse">
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="{% url 'index' %}" class="active"><i class="fa fa-home nav_icon"></i>Home</a>
+                    </li>
+                    {% if user.register.user_type == 'manager' %}
+                    
+                    <li>
+                        <a href="{% url 'manager_dashboard' %}" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+                    </li>                
+                    <li>
+                        <a href="{% url 'comparison_table' %}"><i class="fa fa-table nav_icon"></i> Comparison Result Tables <span class="nav-badge">05</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'product_table' %}"><i class="fa fa-table nav_icon"></i> Product ResuTables <span class="nav-badge">05</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'payment:allpayment' %}"><i class="fa fa-table nav_icon">All Payments</i></span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li>
+                                <a href="{% url 'manager_forms' %}">Comaprison Form<span class="nav-badge-btm">07</span></a>
+                            </li>
+                               <li>
+                                
+                            </li>
+                            <li>
+                                <!-- <a href="validation.html">Validation</a> -->
+                            </li>
+                        </ul>
+                    {% endif %}
+                    {% if user.register.user_type == 'customer' %}
+                        <!-- //nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="{% url 'manager_dashboard' %}" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'payment:userpayment' %}" class="active"><i class="fa fa-home nav_icon"></i>Payment</a>
+                    </li>
+                    
+                    {% endif %}
+                    <li>
+                        <!-- <a href="charts.html" class="chart-nav"><i class="fa fa-bar-chart nav_icon"></i>Charts <span class="nav-badge-btm pull-right">new</span></a> -->
+                    </li>
+                </ul>
+                <!-- //sidebar-collapse -->
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

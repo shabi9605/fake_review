@@ -1,0 +1,2 @@
+{% extends 'index.html' %}{% load static %}{% block title %}product pag{% endblock %}{% load crispy_forms_tags %} {% block content %}
+<h1>NEW ORDER</h1> {% for n in order %}{{n.user}}{{n.price}}{{n.price}}{{n.product}}{% endfor %} {% endblock %}

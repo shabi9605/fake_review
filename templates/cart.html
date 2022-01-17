@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="w3l-ecommerce-main">
+        <!-- /products-->
+        
+        <div class="ecom-contenthny py-5">
+            <div class="container py-lg-5">
+                <h3 class="hny-title mb-0 text-center">Shop With <span>Us</span></h3>
+                <p class="text-center">Handpicked Favourites just for you</p>
+                <!-- /row-->
+                
+                <div class="ecom-products-grids row mt-lg-5 mt-3">
+                    {% for p in products %}
+                    <div class="col-lg-3 col-6 product-incfhny mt-4">
+                        <div class="product-grid2 transmitv">
+                            <div class="product-image2">
+                                
+                                <img class="pic-1 img-fluid" src="{{p.flipkart_image.url}}">
+                                
+                                <ul class="social">
+    
+                                        <li><a href="{% url  'cart:cart_add' p.id %}" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>
+                                        </li>
+                                </ul>
+                        
+                                <div class="transmitv single-item">
+                                <form action="{% url  'wishlist:wishlist_add' p.id %}" method="post">
+                                       {% csrf_token %}
+                                    <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="" value="Men's Blue Shirt">
+                                        <input type="hidden" name="" value="550">
+                                        <input type="hidden" name="" value="30">
+                                        <input type="hidden" name="" value="">
+                                        <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                            Add to wishlist
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+    
+                            <div class="product-content">
+                                <h3 class="title">
+                                
+                                <a href="{{p.comapare.url_flipkart}}">{{p.comapare.name}} </a></h3>
+                               <h3>Flipkart Price</h3>
+                                <span class="price">{{p.comapare_flipkart_price}}</span>
+                                <h3>Amazon Price</h3>
+                                <span class="price">{{p.compare_amazon_price}}</span>
+                            </div>
+                        </div>
+                    </div>
+        
+        {% endfor %}
+                    
+    
+                    
+                </div>
+               
+            </row>
+           
+            </div>
+        </div> 
+    </section>
+</body>
+</html>
